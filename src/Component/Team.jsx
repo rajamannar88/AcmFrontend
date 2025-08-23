@@ -294,6 +294,7 @@ const Team = () => {
   }, []);
 
   const TeamMember = ({ member, showGithub = false }) => (
+
     <div className="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-6">
       <div className="relative mx-auto w-40 h-40 mb-6">
         <div className="w-full h-full rounded-full overflow-hidden border-4 border-blue-800 group-hover:border-blue-500 transition-colors duration-300">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Sparkles, Users, Code, Zap, Star, Rocket, Brain } from 'lucide-react';
 import clgpic from '../assets/CLG_PIC2.jpg'
+import { Link } from 'react-router-dom';
 
 const Homebanner = () => {
   const [currentGreeting, setCurrentGreeting] = useState(0);
@@ -147,12 +148,17 @@ const Homebanner = () => {
 
         {/* CTA Buttons - Mobile Optimized */}
         <div className="flex flex-col sm:flex-row gap-4 md:gap-4 justify-center mb-8 md:mb-12 animate-fadeInUp px-4" style={{ animationDelay: '0.8s' }}>
-          <button className="relative group border-2 bg-gradient-to-r from-sky-500 to-blue-600 border-white/50 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-sm md:text-base overflow-hidden">
-            <span className="relative z-10">Join Our Community</span>
-            <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-          </button>
+<button
+  onClick={() => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  }}
+  className="relative group border-2 bg-gradient-to-r from-sky-500 to-blue-600 border-white/50 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-sm md:text-base overflow-hidden"
+>
+  <span className="relative z-10">Join Our Community</span>
+  <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+</button>
           <button className="relative group border-2 bg-gradient-to-r from-purple-500 to-pink-600 border-white/50 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-sm md:text-base overflow-hidden">
-            <span className="relative z-10">Explore Events</span>
+            <Link to={'./events'}  className="relative z-10">Explore Events</Link>
             <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
           </button>
         </div>

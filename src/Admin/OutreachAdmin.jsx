@@ -277,13 +277,14 @@ export default function OutreachAdmin() {
             </div>
 
             {/* Image */}
-            {item.image_url && (
-              <img 
-                src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${item.image_url}`} 
-                alt="" 
-                className="w-full h-40 object-cover rounded mb-3" 
-              />
-            )}
+{item.image_url && (
+  <img 
+    src={item.image_url} 
+    alt={item.title || "Outreach image"} 
+    className="w-full h-40 object-cover rounded mb-3" 
+  />
+)}
+
 
             {/* Main content */}
             <h4 className="font-semibold text-lg mb-2">{item.title}</h4>

@@ -119,8 +119,8 @@ const ContactSection = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      value: "+91 1234567891",
-      link: "tel:+911234567891"
+      value: "+91 96984 72130",
+      link: "tel:+919698472130"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -343,26 +343,25 @@ const ContactSection = () => {
               ))}
             </div>
 
-            {/* Map */}
-            <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
-              <div className="flex items-center mb-4">
-                <MapPin className="w-6 h-6 text-blue-600 mr-2" />
-                <h3 className="text-xl font-bold text-gray-800">Find Us</h3>
-              </div>
-              <div className="relative overflow-hidden rounded-2xl">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.2383013483645!2d78.183499313739!3d10.242354815732782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00abe47f72f82f%3A0x1364b27b67a87a67!2sNPR%20College%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1734938719541!5m2!1sen!2sin"
-                  width="390"
-                  height="400"
-                  style={{ border: 0, borderRadius: '20px' }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-80 md:h-96 rounded-2xl"
-                  title="NPR College of Engineering and Technology Location"
-                />
-              </div>
-            </div>
+{/* Map */}
+<div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
+  <div className="flex items-center mb-4">
+    <MapPin className="w-6 h-6 text-blue-600 mr-2" />
+    <h3 className="text-xl font-bold text-gray-800">Find Us</h3>
+  </div>
+  <div className="relative overflow-hidden rounded-2xl">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.2383013483645!2d78.183499313739!3d10.242354815732782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00abe47f72f82f%3A0x1364b27b67a87a67!2sNPR%20College%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1734938719541!5m2!1sen!2sin"
+      className="w-full h-80 md:h-96 rounded-2xl"
+      style={{ border: 0 }}
+      allowFullScreen=""
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      title="NPR College of Engineering and Technology Location"
+    />
+  </div>
+</div>
+
           </div>
         </div>
 
