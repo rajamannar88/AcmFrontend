@@ -141,7 +141,7 @@ const Sponsors = () => {
 
         @media (max-width: 768px) {
           .animate-marquee {
-            animation: marquee 20s linear infinite;
+            animation: marquee 5s linear infinite;
           }
         }
       `}</style>

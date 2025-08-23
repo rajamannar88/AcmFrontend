@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, Sparkles } from 'lucide-react';
 import acmlogo from '../assets/acm_logo1.png'
-import clglogo from '../assets/nprcet_weblogo.jpg'
+import clglogo from '../assets/new_nprcet_logo.png'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,15 +12,16 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '/', target: '_self' },
-    { name: 'Team', href: './team', target: '_blank' },
-    { name: 'Events', href: './events', target: '_blank' },
-    { name: 'Careers', href: './career', target: '_blank' },
+    { name: 'Team', href: './team'   },
+    { name: 'Events', href: './events'  },
+    { name: 'Careers', href: './career' },
     { name: 'NPRCET_Digital_Library', href: 'https://xmind.ai/share/Zd8D9dwb', target: '_blank' },
     { name: 'Division', href: 'https://xmind.ai/share/hyjY8MI8?xid=MBUWGjEX', target: '_blank' },
-    { name: 'Technology_Playground', href: './Playground/playground.html', target: '_blank' },
-    { name: 'ContactUs', href: '/', target: '_self', isScrollTo: true },
-    { name: 'Outreach', href: './outreach', target: '_blank' },
-    { name: 'Initiatives', href: './Initiatives/Initiatives.html', target: '_blank' },
+    { name: 'AI Hub', href: './ai' },
+    { name: 'Technology_Playground', href: './technologyplayground' },
+    { name: 'ContactUs', href: '#contact', target: '_self', isScrollTo: true },
+    { name: 'Outreach', href: './outreach' },
+    { name: 'Initiatives', href: './initiatives'},
   ];
 
   return (
@@ -67,7 +68,6 @@ const Navbar = () => {
           {/* NEW Icon with Animation */}
           <a 
             href="./recent-events" 
-            target="_blank" 
             rel="noopener noreferrer"
             className="flex-shrink-0 group"
           >
@@ -112,8 +112,7 @@ const Navbar = () => {
             {/* NEW Item for Mobile - At Bottom */}
             <div className="border-t border-blue-100 pt-3 mt-2">
               <a 
-                href="./New/new.html" 
-                target="_blank" 
+                href="./recent-events" 
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 hover:text-blue-600 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
@@ -122,7 +121,7 @@ const Navbar = () => {
                   <Sparkles size={12} className="animate-spin" style={{ animationDuration: '3s' }} />
                   <span>NEW</span>
                 </div>
-                <span className="text-lg font-bold">What's New</span>
+                {/* <span className="text-lg font-bold">What's New</span> */}
               </a>
             </div>
           </div>

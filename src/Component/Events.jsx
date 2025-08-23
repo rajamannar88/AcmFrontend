@@ -74,7 +74,7 @@ function Events({ data }) {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50">
+    <div className="min-h-screen mt-20 bg-gradient-to-br from-sky-50 via-white to-cyan-50">
       {/* Header Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-sky-600 via-cyan-600 to-sky-700 text-white">
         <div className="absolute inset-0 bg-black opacity-20"></div>
@@ -95,17 +95,19 @@ function Events({ data }) {
       <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
         {/* Navigation Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          <button
-            onClick={() => handleViewChange("calendar")}
-            className={`group px-8 py-4 rounded-2xl font-semibold text-white transition-all duration-300 flex items-center gap-3 transform hover:scale-105 ${
-              activeView === "calendar"
-                ? "bg-gradient-to-r from-sky-600 to-sky-700 shadow-xl shadow-sky-200"
-                : "bg-gradient-to-r from-sky-500 to-sky-600 hover:shadow-lg shadow-sky-100"
-            }`}
-          >
-            <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-            Explore Events Calendar
-          </button>
+       {/* Calendar Button (Navigates to /calendar) */}
+      <Link
+        to="/calendar"
+        className={`group px-8 py-4 rounded-2xl font-semibold text-white transition-all duration-300 flex items-center gap-3 transform hover:scale-105 ${
+          location.pathname === "/calendar"
+            ? "bg-gradient-to-r from-sky-600 to-sky-700 shadow-xl shadow-sky-200"
+            : "bg-gradient-to-r from-sky-500 to-sky-600 hover:shadow-lg shadow-sky-100"
+        }`}
+      >
+        <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+        Explore Events Calendar
+      </Link>
+
           <Link
             to={"/gallery"}
             className={`group px-8 py-4 rounded-2xl font-semibold text-white transition-all duration-300 flex items-center gap-3 transform hover:scale-105 ${
@@ -258,11 +260,11 @@ function Events({ data }) {
                   </div>
 
                   {/* Action Button */}
-                  <button className="w-full bg-gradient-to-r from-sky-500 via-cyan-500 to-sky-500 text-white font-semibold py-3 px-4 rounded-2xl hover:shadow-lg transition-all duration-300 transform group-hover:scale-105 flex items-center justify-center gap-2 group text-sm">
+                  {/* <button className="w-full bg-gradient-to-r from-sky-500 via-cyan-500 to-sky-500 text-white font-semibold py-3 px-4 rounded-2xl hover:shadow-lg transition-all duration-300 transform group-hover:scale-105 flex items-center justify-center gap-2 group text-sm">
                     <Users className="w-4 h-4" />
                     <span>View Details</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             ))}

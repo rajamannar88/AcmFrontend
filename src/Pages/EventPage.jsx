@@ -3,6 +3,7 @@ import Events from '../Component/Events'
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Navbar from '../Component/Navbar';
 
 
 function EventPage() {
@@ -23,7 +24,10 @@ function EventPage() {
   },[]);
 
   return (
+    <>
+        <Navbar/>
     <Events data={Event}/>
+    </>
   )
 }
 

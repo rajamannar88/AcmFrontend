@@ -23,10 +23,10 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { name: 'About Us', href: '#about' },
+    { name: 'About Us', href: '#about-acm' },
     { name: 'Vision & Mission', href: '#vision-mission-goals' },
-    { name: 'Events', href: '#events' },
-    { name: 'Sponsors', href: '#sponsors' },
+    { name: 'Events', href: '/events' },
+    { name: 'Sponsors', href: '#sponsors-section' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -63,12 +63,12 @@ const Footer = () => {
       href: '#',
       color: 'hover:text-blue-700'
     },
-    { 
-      name: 'GitHub', 
-      icon: <Github className="w-5 h-5" />, 
-      href: '#',
-      color: 'hover:text-gray-900'
-    }
+    // { 
+    //   name: 'GitHub', 
+    //   icon: <Github className="w-5 h-5" />, 
+    //   href: '#',
+    //   color: 'hover:text-gray-900'
+    // }
   ];
 
   const stats = [
@@ -141,12 +141,12 @@ const Footer = () => {
                 <div className="flex items-center text-gray-300 hover:text-white transition-colors duration-200">
                   <Phone className="w-5 h-5 mr-3 text-blue-400" />
                   <a href="tel:+911234567891" className="hover:underline">
-                    +91 73734 44449
+                    +91 96984 72130
                   </a>
                 </div>
                 <div className="flex items-start text-gray-300">
                   <MapPin className="w-5 h-5 mr-3 text-blue-400 mt-1" />
-                  <span>NPR College of Engineering and Technology</span>
+                  <span>65RP+W8P, NPR Nagar, Natham, Dindigul, Tamil Nadu 624401</span>
                 </div>
               </div>
 
@@ -217,9 +217,8 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
               {/* Copyright */}
               <div className="flex items-center text-gray-300">
-                <span>&copy; 2024 Developed with</span>
-                <Heart className="w-4 h-4 mx-2 text-red-500 animate-pulse" />
-                <span>by NPRCET ACM Student Chapter</span>
+                <span>&copy; 2025 NPRCET ACM Student Chapter.</span>
+                <span> All Rights Reserved.</span>
               </div>
 
               {/* Back to Top */}

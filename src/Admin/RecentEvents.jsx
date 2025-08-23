@@ -11,6 +11,9 @@ export default function RecentEvents() {
     location: ''
   });
   const [image, setImage] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [existingImageUrl, setExistingImageUrl] = useState(null);
   const fileRef = useRef(null);
 
   const fetchList = async () => {
@@ -19,6 +22,23 @@ export default function RecentEvents() {
   };
 
   useEffect(() => { fetchList() }, []);
+
+  const resetForm = () => {
+    setForm({ 
+      title: '', 
+      description: '',
+      date: '',
+      time: '',
+      location: ''
+    });
+    setImage(null);
+    setIsEditing(false);
+    setEditingId(null);
+    setExistingImageUrl(null);
+    
+    // Reset file input
+    if (fileRef.current) fileRef.current.value = '';
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -31,31 +51,63 @@ export default function RecentEvents() {
     fd.append('time', form.time);
     fd.append('location', form.location);
     
-    // Append image
+    // Append image if new image is selected
     if (image) fd.append('image', image);
     
-    await API.post('/recent-events', fd, { headers: { 'Content-Type': 'multipart/form-data' } });
-    
-    // Reset form
-    setForm({ 
-      title: '', 
-      description: '',
-      date: '',
-      time: '',
-      location: ''
+    try {
+      if (isEditing) {
+        // Update existing event
+        await API.put(`/recent-events/${editingId}`, fd, { 
+          headers: { 'Content-Type': 'multipart/form-data' } 
+        });
+      } else {
+        // Create new event
+        await API.post('/recent-events', fd, { 
+          headers: { 'Content-Type': 'multipart/form-data' } 
+        });
+      }
+      
+      resetForm();
+      fetchList();
+    } catch (error) {
+      console.error('Error saving event:', error);
+      alert('Error saving event. Please try again.');
+    }
+  };
+
+  const startEdit = (event) => {
+    setForm({
+      title: event.title || '',
+      description: event.description || '',
+      date: event.date || '',
+      time: event.time || '',
+      location: event.location || ''
     });
+    setIsEditing(true);
+    setEditingId(event.id);
+    setExistingImageUrl(event.image_url);
     setImage(null);
     
     // Reset file input
     if (fileRef.current) fileRef.current.value = '';
     
-    fetchList();
+    // Scroll to form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const cancelEdit = () => {
+    resetForm();
   };
 
   const remove = async (id) => {
     if (!confirm('Delete this event?')) return;
-    await API.delete(`/recent-events/${id}`);
-    fetchList();
+    try {
+      await API.delete(`/recent-events/${id}`);
+      fetchList();
+    } catch (error) {
+      console.error('Error deleting event:', error);
+      alert('Error deleting event. Please try again.');
+    }
   };
 
   const triggerFileInput = () => {
@@ -99,10 +151,90 @@ export default function RecentEvents() {
     return 'Upcoming';
   };
 
+  const renderImageSection = () => {
+    // Show new image if selected
+    if (image) {
+      return (
+        <div className="relative border rounded p-2">
+          <img 
+            src={URL.createObjectURL(image)} 
+            alt="Preview" 
+            className="w-full h-32 object-cover rounded mb-2"
+          />
+          <div className="text-xs text-gray-600 mb-2 truncate">{image.name}</div>
+          <button
+            type="button"
+            onClick={removeImage}
+            className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600"
+            title="Remove image"
+          >
+            ×
+          </button>
+          <button
+            type="button"
+            onClick={triggerFileInput}
+            className="w-full text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+          >
+            Change Image
+          </button>
+        </div>
+      );
+    }
+
+    // Show existing image if editing and no new image selected
+    if (isEditing && existingImageUrl) {
+      return (
+        <div className="relative border rounded p-2">
+          <img 
+            src={`${import.meta.env.VITE_API_URL.replace('/api', '')}${existingImageUrl}`} 
+            alt="Current" 
+            className="w-full h-32 object-cover rounded mb-2"
+          />
+          <div className="text-xs text-gray-600 mb-2">Current image</div>
+          <button
+            type="button"
+            onClick={triggerFileInput}
+            className="w-full text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+          >
+            Change Image
+          </button>
+        </div>
+      );
+    }
+
+    // Show upload button
+    return (
+      <button
+        type="button"
+        onClick={triggerFileInput}
+        className="w-full border border-dashed border-gray-300 p-4 rounded text-gray-600 hover:border-gray-400 hover:bg-gray-50 min-h-[120px] flex flex-col items-center justify-center"
+      >
+        <svg className="w-8 h-8 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        <span className="text-sm">Upload Event Image</span>
+      </button>
+    );
+  };
+
   return (
     <div>
       <div className="bg-white p-4 rounded shadow mb-6">
-        <h2 className="font-semibold mb-3">Add Recently Conducted Event</h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="font-semibold">
+            {isEditing ? 'Edit Recent Event' : 'Add Recently Conducted Event'}
+          </h2>
+          {isEditing && (
+            <button
+              type="button"
+              onClick={cancelEdit}
+              className="text-gray-500 hover:text-gray-700 text-sm"
+            >
+              Cancel Edit
+            </button>
+          )}
+        </div>
+        
         <form onSubmit={submit} className="grid gap-3">
           <input 
             placeholder="Event Title" 
@@ -161,46 +293,18 @@ export default function RecentEvents() {
               accept="image/*"
               className="hidden"
             />
-            {image ? (
-              <div className="relative border rounded p-2">
-                <img 
-                  src={URL.createObjectURL(image)} 
-                  alt="Preview" 
-                  className="w-full h-32 object-cover rounded mb-2"
-                />
-                <div className="text-xs text-gray-600 mb-2 truncate">{image.name}</div>
-                <button
-                  type="button"
-                  onClick={removeImage}
-                  className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600"
-                  title="Remove image"
-                >
-                  ×
-                </button>
-                <button
-                  type="button"
-                  onClick={triggerFileInput}
-                  className="w-full text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
-                >
-                  Change Image
-                </button>
-              </div>
-            ) : (
-              <button
-                type="button"
-                onClick={triggerFileInput}
-                className="w-full border border-dashed border-gray-300 p-4 rounded text-gray-600 hover:border-gray-400 hover:bg-gray-50 min-h-[120px] flex flex-col items-center justify-center"
-              >
-                <svg className="w-8 h-8 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
-                </svg>
-                <span className="text-sm">Upload Event Image</span>
-              </button>
-            )}
+            {renderImageSection()}
           </div>
 
-          <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-            Add Recent Event
+          <button 
+            type="submit"
+            className={`${
+              isEditing 
+                ? 'bg-blue-600 hover:bg-blue-700' 
+                : 'bg-green-600 hover:bg-green-700'
+            } text-white px-4 py-2 rounded transition-colors`}
+          >
+            {isEditing ? 'Update Event' : 'Add Recent Event'}
           </button>
         </form>
       </div>
@@ -271,12 +375,21 @@ export default function RecentEvents() {
                 <div className="text-xs text-gray-400">
                   Event ID: {event.id}
                 </div>
-                <button 
-                  onClick={() => remove(event.id)} 
-                  className="text-red-500 hover:text-red-700 text-sm font-medium"
-                >
-                  Delete
-                </button>
+                <div className="flex space-x-2">
+                  <button 
+                    onClick={() => startEdit(event)} 
+                    className="text-blue-500 hover:text-blue-700 text-sm font-medium"
+                    disabled={isEditing}
+                  >
+                    Edit
+                  </button>
+                  <button 
+                    onClick={() => remove(event.id)} 
+                    className="text-red-500 hover:text-red-700 text-sm font-medium"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>

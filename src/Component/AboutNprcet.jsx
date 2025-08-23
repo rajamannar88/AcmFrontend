@@ -97,11 +97,11 @@ const AboutNprcet = () => {
                 <p className="text-xs opacity-90">NAAC Grade</p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+              {/* <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-xl text-center hover:scale-105 transition-transform duration-300">
                 <Building className="w-6 h-6 mx-auto mb-2" />
                 <p className="text-lg font-bold">Auto</p>
                 <p className="text-xs opacity-90">Status 2023</p>
-              </div>
+              </div> */}
 
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-xl text-center hover:scale-105 transition-transform duration-300">
                 <Users className="w-6 h-6 mx-auto mb-2" />

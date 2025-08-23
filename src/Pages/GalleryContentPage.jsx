@@ -3,7 +3,11 @@ import GalleryContent from '../Component/GalleryContent'
 
 function GalleryContentPage() {
   return (
-    <GalleryContent/>
+    <>
+        <GalleryContent/>
+    
+    </>
+
   )
 }
 

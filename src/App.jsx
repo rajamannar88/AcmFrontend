@@ -15,6 +15,15 @@ import Outreachpage from './Pages/Outreachpage';
 import RecentevtPage from './Pages/RecentevtPage';
 import GalleryContentPage from './Pages/GalleryContentPage';
 import Career from './Component/Career';
+import AI from './Component/AI';
+import TechnologyPlayground from './Component/TechnologyPlayground';
+import Calendarnew from './Component/Calendarnew';
+import InitiativesPage from './Pages/InitiativesPage';
+import Notfound from './Component/Notfound';
+import CareerPage from './Pages/CareerPage';
+import TeamPage from './Pages/TeamPage';
+import AIhubPage from './Pages/AIhubPage';
+import TechPage from './Pages/TechPage';
 
 const token = localStorage.getItem('admin_token');
 if (token) setToken(token);
@@ -31,13 +40,18 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/team" element={<Team />} />
+        <Route path="/team" element={<TeamPage />} />
         <Route path="/events" element={<EventPage/>} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/gallery-content/:id" element={<GalleryContentPage />} />
         <Route path="/outreach" element={<Outreachpage/>} />
         <Route path="/recent-events" element={<RecentevtPage/>} />
-        <Route path='/career' element={<Career/>} />
+        <Route path='/career' element={<CareerPage/>} />
+        <Route path='/ai' element={<AIhubPage/>}/>
+        <Route path='/technologyplayground' element={<TechPage/>} />
+        <Route path='/calendar' element={<Calendarnew/>} />
+        <Route path='/initiatives' element={<InitiativesPage/>} />
+        <Route path='*' element={<Notfound/>} />
 
         {/* Admin Login */}
         <Route path="/admin" element={<AdminLogin />} />
