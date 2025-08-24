@@ -489,7 +489,7 @@ function Career() {
       <div className="bg-gray-50 py-8 text-center text-gray-600">
         <p className="text-sm">
           Applications are reviewed on a rolling basis. We'll get back to you
-          within 1-2 weeks.
+          within 24hrs.
         </p>
       </div>
     </div>

@@ -19,7 +19,7 @@ const Navbar = () => {
     { name: 'Division', href: 'https://xmind.ai/share/hyjY8MI8?xid=MBUWGjEX', target: '_blank' },
     { name: 'AI Hub', href: './ai' },
     { name: 'Technology_Playground', href: './technologyplayground' },
-    { name: 'ContactUs', href: '#contact', target: '_self', isScrollTo: true },
+    { name: 'ContactUs', href: './contact', target: '_self', isScrollTo: true },
     { name: 'Outreach', href: './outreach' },
     { name: 'Initiatives', href: './initiatives'},
   ];
