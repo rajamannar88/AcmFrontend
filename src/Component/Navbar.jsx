@@ -19,6 +19,7 @@ const Navbar = () => {
     { name: 'Division', href: 'https://xmind.ai/share/hyjY8MI8?xid=MBUWGjEX', target: '_blank' },
     { name: 'AI Hub', href: './ai' },
     { name: 'Technology_Playground', href: './technologyplayground' },
+    { name: 'Virtual Lab', href: './virtual-lab'},
     { name: 'ContactUs', href: './contact', target: '_self', isScrollTo: true },
     { name: 'Outreach', href: './outreach' },
     { name: 'Initiatives', href: './initiatives'},
@@ -46,7 +47,7 @@ const Navbar = () => {
             <img 
               src={acmlogo}
               alt="ACM Logo" 
-              className="h-14 w-auto md:h-18 object-contain"
+              className="h-14 w-auto md:h-20 object-contain"
             />
           </div>
         </div>
@@ -64,6 +65,21 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
+
+          {/* NEW Icon with Animation */}
+          <a 
+            href="./recent-events" 
+            rel="noopener noreferrer"
+            className="flex-shrink-0 group"
+          >
+            <div className="relative">
+              <div className="bg-blue-500 text-white px-3 py-1 my-3 rounded-full text-sm font-bold animate-pulse hover:animate-none hover:bg-blue-600 transition-colors duration-200 flex items-center space-x-1">
+                <Sparkles size={16} className="animate-spin" style={{ animationDuration: '3s' }} />
+                <span>Album</span>
+              </div>
+            </div>
+          </a>    
+          
           
           {/* NEW Icon with Animation */}
           <a 
@@ -93,7 +109,13 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+<div
+  className={`lg:hidden transition-all duration-300 ease-in-out ${
+    isMenuOpen
+      ? 'max-h-[90vh] opacity-100 overflow-y-auto'
+      : 'max-h-0 opacity-0 overflow-hidden'
+  }`}
+>
         <div className="bg-white border-t border-blue-200 px-4 py-2">
           <div className="flex flex-col space-y-3 font-bold text-blue-500 font-sans">
             {navLinks.map((link, index) => (
@@ -108,9 +130,23 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            
+                        
             {/* NEW Item for Mobile - At Bottom */}
-            <div className="border-t border-blue-100 pt-3 mt-2">
+            <div className="flex gap-5 border-t border-blue-100 pt-3 mt-2">
+
+            <a 
+                href="./recent-events" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:text-blue-600 transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <div className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold animate-pulse flex items-center space-x-1">
+                  <Sparkles size={12} className="animate-spin" style={{ animationDuration: '3s' }} />
+                  <span>Album</span>
+                </div>
+                {/* <span className="text-lg font-bold">What's New</span> */}
+              </a>
+
               <a 
                 href="./recent-events" 
                 rel="noopener noreferrer"

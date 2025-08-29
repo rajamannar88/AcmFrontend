@@ -67,38 +67,38 @@ const Sponsors = () => {
         </div>
 
         {/* Sponsors Marquee */}
-        <div className="overflow-hidden relative w-full py-6">
-          <div className="flex animate-marquee space-x-6">
-            {[...sponsors, ...sponsors].map((sponsor, index) => (
-              <a
-                key={index}
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex-shrink-0 bg-white rounded-xl p-6 shadow-lg border border-gray-100 w-40 h-32 flex flex-col items-center justify-center group hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                }`}
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                  animationFillMode: 'both'
-                }}
-              >
-                <img
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  className="w-full h-16 object-contain mb-2 group-hover:scale-110 transition-transform duration-300"
-                  onError={(e) => {
-                    e.target.src =
-                      'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA4MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNjAiIGZpbGw9IiNGM0Y0RjYiLz48cGF0aCBkPSJNNDAgMzBDNDMuMzEzNyAzMCA0NiAyNy4zMTM3IDQ2IDI0QzQ2IDIwLjY4NjMgNDMuMzEzNyAxOCA0MCAxOEMzNi42ODYzIDE4IDM0IDIwLjY4NjMgMzQgMjRDMzQgMjcuMzEzNyAzNi42ODYzIDMwIDQwIDMwWiIgZmlsbD0iIjlDQTNBRiIvPjwvc3ZnPg==';
-                  }}
-                />
-                <span className="text-xs font-semibold text-gray-700 text-center">
-                  {sponsor.name}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
+<div className="overflow-hidden relative w-full py-6">
+  <div className="marquee-wrapper space-x-6">
+    {[...sponsors, ...sponsors].map((sponsor, index) => (
+      <a
+        key={index}
+        href={sponsor.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`flex-shrink-0 bg-white rounded-xl p-6 shadow-lg border border-gray-100 w-40 h-32 flex flex-col items-center justify-center group hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
+          isVisible ? 'animate-fade-in-up' : 'opacity-0'
+        }`}
+        style={{
+          animationDelay: `${index * 100}ms`,
+          animationFillMode: 'both'
+        }}
+      >
+        <img
+          src={sponsor.logo}
+          alt={sponsor.name}
+          className="w-full h-16 object-contain mb-2 group-hover:scale-110 transition-transform duration-300"
+          onError={(e) => {
+            e.target.src =
+              'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA4MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNjAiIGZpbGw9IiNGM0Y0RjYiLz48cGF0aCBkPSJNNDAgMzBDNDMuMzEzNyAzMCA0NiAyNy4zMTM3IDQ2IDI0QzQ2IDIwLjY4NjMgNDMuMzEzNyAxOCA0MCAxOEMzNi42ODYzIDE4IDM0IDIwLjY4NjMgMzQgMjRDMzQgMjcuMzEzNyAzNi42ODYzIDMwIDQwIDMwWiIgZmlsbD0iIjlDQTNBRiIvPjwvc3ZnPg==';
+          }}
+        />
+        <span className="text-xs font-semibold text-gray-700 text-center">
+          {sponsor.name}
+        </span>
+      </a>
+    ))}
+  </div>
+</div>
 
         {/* Partnership Message */}
         <div className="text-center mt-16">
@@ -108,43 +108,64 @@ const Sponsors = () => {
             <Star className="w-5 h-5 text-yellow-300" />
           </div>
         </div>
+
+
+        
       </div>
 
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+<style jsx>{`
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-        @keyframes marquee {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 
-        .animate-fade-in-up {
-          animation: fade-in-up 0.6s ease-out;
-        }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
 
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
+  .marquee-wrapper {
+    display: flex;
+    width: max-content; /* ensures correct width */
+    animation: marquee 25s linear infinite;
+  }
 
-        @media (max-width: 768px) {
-          .animate-marquee {
-            animation: marquee 5s linear infinite;
-          }
-        }
-      `}</style>
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .marquee-wrapper {
+      animation: marquee 20s linear infinite;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .marquee-wrapper {
+      animation: marquee 20s linear infinite;
+    }
+    .overflow-hidden {
+      overflow-x: auto; /* manual scroll fallback */
+      scrollbar-width: none; /* Firefox hide scrollbar */
+    }
+    .overflow-hidden::-webkit-scrollbar {
+      display: none; /* Chrome/Safari hide scrollbar */
+    }
+  }
+`}</style>
+
     </section>
   );
 };

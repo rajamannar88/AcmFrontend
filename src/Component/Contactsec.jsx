@@ -82,7 +82,7 @@ const ContactSection = () => {
 
     // Create form data exactly like the original HTML form
     const formDataToSend = new FormData();
-    formDataToSend.append('access_key', '788570ee-a1be-4e82-8d08-86da13ef2de2');
+    formDataToSend.append('access_key', '84c1f604-f6f8-48b8-afaa-e10f4d48bb23');
     formDataToSend.append('subject', 'New Contact Form Submission from Web3Forms');
     formDataToSend.append('from_name', 'My Website');
     formDataToSend.append('name', formData.name.trim());
