@@ -24,6 +24,8 @@ import CareerPage from './Pages/CareerPage';
 import TeamPage from './Pages/TeamPage';
 import AIhubPage from './Pages/AIhubPage';
 import TechPage from './Pages/TechPage';
+import ContactSection from './Component/Contactsec';
+import VirtualLab from './Component/VirtualLab';
 
 const token = localStorage.getItem('admin_token');
 if (token) setToken(token);
@@ -51,6 +53,8 @@ function App() {
         <Route path='/technologyplayground' element={<TechPage/>} />
         <Route path='/calendar' element={<Calendarnew/>} />
         <Route path='/initiatives' element={<InitiativesPage/>} />
+        <Route path='/contact' element={<ContactSection/>} />
+        <Route path='/virtual-lab' element={<VirtualLab/>} />
         <Route path='*' element={<Notfound/>} />
 
         {/* Admin Login */}

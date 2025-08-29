@@ -1,6 +1,6 @@
 import React from 'react';
 import { Award, Users, Building, Calendar } from 'lucide-react';
-import abtpic from '../assets/abt1pic.jpg'
+import abtpic from '../assets/new-abt.jpg'
 
 const AboutNprcet = () => {
   return (
